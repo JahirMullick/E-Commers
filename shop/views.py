@@ -1,7 +1,9 @@
 from django.shortcuts import render
+
 from django.http import HttpResponse
 
 def index(request):
+    intel = {}
     return render(request,'shop/index.html')
 
 def about(request):
