@@ -1,10 +1,15 @@
 from django.shortcuts import render
-
+from .models import Product
+from math import ceil
 from django.http import HttpResponse
 
 def index(request):
-    intel = {}
-    return render(request,'shop/index.html')
+    products = Product.objects.all()
+    print(products)
+    n = len(products)
+    nSlides = n//4 + ceil((n/4)-(n//4))
+    intel = {'no_of_slides':nSlides, 'range': range(nSlides),'product': products}
+    return render(request,'shop/index.html', intel)
 
 def about(request):
     return HttpResponse("we are at about")
